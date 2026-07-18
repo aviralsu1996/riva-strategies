@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Sun, Moon, Mail, BookOpen, Sparkles, Terminal, Info } from 'lucide-react';
 import KnowYourMinister from './components/KnowYourMinister';
-import GoogleAd from './components/GoogleAd';
 import ContactUs from './components/ContactUs';
 
 // Import newly created Political leaders directory modules
@@ -92,9 +91,6 @@ export default function App() {
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
         <div className="space-y-6">
-          {/* Top Leaderboard Ad Slot */}
-          <GoogleAd slot="top-leaderboard-01" format="horizontal" className="mb-4" />
-          
           {/* MAIN TAB SWITCHER */}
           {mainTab === 'directory' && (
             <div className="space-y-6">
@@ -178,9 +174,6 @@ export default function App() {
           {mainTab === 'admin' && (
             <DirectoryAdmin onSelectLeader={handleSelectLeader} />
           )}
-          
-          {/* Bottom Dynamic Ad Slot */}
-          <GoogleAd slot="bottom-display-02" format="auto" className="mt-8" />
         </div>
       </main>
 
