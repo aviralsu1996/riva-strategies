@@ -37,7 +37,7 @@ export default function MinisterApp() {
                 KNOW YOUR MINISTER
               </h1>
               <p className={`hidden sm:block text-[8px] md:text-[9px] tracking-widest ${isDarkMode ? 'text-slate-400' : 'text-slate-500'} font-sans mt-0.5`}>
-                NATIONAL CABINET & LEADER DOSSIER VERIFICATION SYSTEM
+                India's Verified Leadership Directory
               </p>
             </div>
           </div>

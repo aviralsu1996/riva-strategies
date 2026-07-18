@@ -7,13 +7,10 @@ import {
 import { SupabaseLeader, LeaderCategory } from '../../types';
 import { dbService } from '../../lib/supabaseClient';
 
-const getProxiedImageUrl = (url?: string) => {
+const getDirectImageUrl = (url?: string) => {
   if (!url) return '';
-  if (url.startsWith('/') || url.startsWith('data:') || url.startsWith('blob:')) {
-    return url;
-  }
-  if (url.startsWith('http://') || url.startsWith('https://')) {
-    return `/api/image-proxy?url=${encodeURIComponent(url)}`;
+  if (url.startsWith('http') && (url.includes('wikimedia.org') || url.includes('wikipedia.org'))) {
+    return `/api/directory/proxy-image?url=${encodeURIComponent(url)}`;
   }
   return url;
 };
@@ -216,10 +213,13 @@ export default function DirectoryHome({ onSelectLeader, onNavigateTo }: Director
                 <div className="px-6 relative -mt-12 flex-1 pb-6 space-y-4">
                   <div className="w-20 h-20 rounded-2xl overflow-hidden bg-slate-200 border-4 border-white dark:border-slate-950 shadow-md">
                     <img
-                      src={getProxiedImageUrl(leader.image)}
+                      src={getDirectImageUrl(leader.image)}
                       alt={leader.name}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover object-top"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=400';
+                      }}
                     />
                   </div>
 
